@@ -9,7 +9,7 @@ class Registrar:
 class Cashier:
     pass
 
-class clearance():
+class Clearance():
     def __init__(self,Name,StudentNumber,YearLevel,Program):
         self.name = Name
         self._studentnumber = StudentNumber
