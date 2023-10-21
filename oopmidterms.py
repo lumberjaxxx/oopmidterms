@@ -1,7 +1,16 @@
 class Student:
-    
-    def __init__ (self, name, year_level, program):
-        pass
+
+    def __init__(self, name, student_number, year_level, program):
+
+        self.name = name
+        self.year_level = year_level
+        self.program = program
+
+    def display_student_info(self):
+        print(f"Name: {self.name}")
+        print(f"year_level: {self.year_level}")
+        print(f"program: {self.program}")
+
 
 class Registrar:
     pass
@@ -9,22 +18,22 @@ class Registrar:
 class Cashier:
     pass
 
-class Clearance():
-    def __init__(self, name, year_level, program):
-        self.name = name
-        self._student_number = student_number
-        self.yearlevel = year_level
-        self.program = program
-        self.OrgFee = False
-        self.CsgFee = False
-        self.status = True
 
-    def get(self):
-        return (self._student_number)
+class Clearance(Student):
+    def __init__(self,name,year_level,program):
+        self.orgfee = False
+        self.csgfee = False
+        
+        Student.__init__(self,name,year_level,program)
 
-    def PayOrg(self):
-        if {self.OrgFee}== True:
-            return f'{self.name} paid the Org Fee.'
+    def Pay_Org(self):
+        if self.orgfee==True:
+            print(f'Already cleared in Org Fee.')
+            print( f'{Student.name} paid the Org Fee.')
+        elif self.csgfee==True:
+            print(f'Already cleared in CSG Fee.')
+        else:
+            print(f'Is not cleared.')
 
     def CSGFee(self):
         if {self.CsgFee} == True:
@@ -59,4 +68,8 @@ class Verification(Student, Cashier):
 
 
 
-student1 = Clearance("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+student1 = Student("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+student1.display_student_info()
+stud1_registrar = Registrar()
+stud1_clearance = Clearance()
+stud1_clearance.Pay_Org(True)
