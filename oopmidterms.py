@@ -1,10 +1,13 @@
 class Student:
-    
-    def __init__(self, name, student_number, year_level, program):
+    def __init__(self, name, year_level, program):
         self.name = name
-        self._student_number = student_number
         self.year_level = year_level
         self.program = program
+
+    def display_student_info(self):
+        print(f"Name: {self.name}")
+        print(f"year_level: {self.year_level}")
+        print(f"program: {self.program}")
 
 class Registrar:
     pass
