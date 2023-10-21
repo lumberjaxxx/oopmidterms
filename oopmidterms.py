@@ -1,5 +1,7 @@
 class Student:
-    def __init__(self, name, year_level, program):
+
+    def __init__(self, name, student_number, year_level, program):
+
         self.name = name
         self.year_level = year_level
         self.program = program
@@ -9,24 +11,28 @@ class Student:
         print(f"year_level: {self.year_level}")
         print(f"program: {self.program}")
 
+
 class Registrar:
     pass
 
 class Cashier:
     pass
 
-class Clearance():
-    def __init__(self,Name,StudentNumber,YearLevel,Program):
-        self.name = Name
-        self._studentnumber = StudentNumber
-        self.yearlevel = YearLevel
-        self.program = Program
-        self.OrgFee = False
-        self.CsgFee = False
-        self.status = True
 
-    def get(self):
-        return (self._studentnumber)
+class Clearance(Student):
+    def __init__(self):
+        self.orgfee = False
+        self.csgfee = False
+        
+        Student.__init__(self,name,year_level,program)
+
+    def Pay_Org(self):
+        if self.orgfee==True:
+            print(f'Already cleared in Org Fee.')
+        elif self.csgfee==True:
+            print(f'Already cleared in CSG Fee.')
+        else:
+            print(f'Is not cleared.')
 
     def PayOrg(self):
         if {self.OrgFee}== True:
@@ -38,37 +44,31 @@ class Clearance():
 
     def signing(self):
         if {self.status}==False:
-            return f'The clearance of {self.name} with a student number of {self._studentnumber}///' \
-                   f' and a {self.yearlevel} from the program of {self.program} is already signed. '
-
-student1 = clearance("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+            return f'The clearance of {self.name} with a student number of {self._student_number}///' \
+                   f' and a {self.year_level} from the program of {self.program} is already signed. '
 
 
-print(student1.name)
-print(student1.yearlevel)
-print(student1.program)
-print(student1.OrgFee)
-print(student1.CsgFee)
-print(student1.status)
+class Verification(Student, Cashier):
+
+    def __init__(self, name, year_level, program, status):
+        self.verify = True
+
+        Student.__init__(self, name, program, year_level)
+        Cashier.__init__(self, status)
+
+    def verify(self):
+        if Cashier.status() == True:
+            print(f'{Student.name} is cleared ')
+        else: 
+            print('Please clear your previous requirements')
+
+    def details(self):
+        if Cashier.status() == True:
+            print(f'{Student.name}of {Student.year_level} - {Student.program} \
+                  has complete all the requirement for enrollment.')
+            print(f'{Student.name} is officially enrolled')
 
 
 
 
-
-
-
-
-
-
-class Encoder(Student):
-
-    Student.__init__(name, student_number, year_level, program)
-
-    def checkClearance(self):
-        pass
-
-    def encodeCourses(self):
-        pass
-
-    def prospectus(self):
-        pass
+student1 = Clearance("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
