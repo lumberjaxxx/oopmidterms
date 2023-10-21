@@ -29,6 +29,14 @@ class Clearance(Student):
     def Pay_Org(self):
         if self.orgfee==True:
             print(f'Already cleared in Org Fee.')
+        elif self.csgfee==True:
+            print(f'Already cleared in CSG Fee.')
+        else:
+            print(f'Is not cleared.')
+
+    def Pay_Org(self):
+        if self.orgfee==True:
+            print(f'Already cleared in Org Fee.')
             print( f'{Student.name} paid the Org Fee.')
         elif self.csgfee==True:
             print(f'Already cleared in CSG Fee.')
