@@ -1,7 +1,11 @@
 class Student:
-    
-    def __init__ (self, name, year_level, program):
-        pass
+
+    def __init__(self, name, student_number, year_level, program):
+        self.name = name
+        self._student_number = student_number
+        self.year_level = year_level
+        self.program = program
+
 
 class Registrar:
     pass
@@ -9,18 +13,21 @@ class Registrar:
 class Cashier:
     pass
 
-class Clearance():
-    def __init__(self, name, year_level, program):
-        self.name = name
-        self._student_number = student_number
-        self.yearlevel = year_level
-        self.program = program
-        self.OrgFee = False
-        self.CsgFee = False
-        self.status = True
 
-    def get(self):
-        return (self._student_number)
+class Clearance(Student):
+    def __init__(self):
+        self.orgfee = False
+        self.csgfee = False
+        
+        Student.__init__(self,name,year_level,program)
+
+    def Pay_Org(self):
+        if self.orgfee==True:
+            print(f'Already cleared in Org Fee.')
+        elif self.csgfee==True:
+            print(f'Already cleared in CSG Fee.')
+        else:
+            print(f'Is not cleared.')
 
     def PayOrg(self):
         if {self.OrgFee}== True:
