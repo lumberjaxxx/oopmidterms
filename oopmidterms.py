@@ -1,7 +1,10 @@
 class Student:
     
-    def __init__ (self, name, student_number, year_level, program):
-        pass
+    def __init__(self, name, student_number, year_level, program):
+        self.name = name
+        self._student_number = student_number
+        self.year_level = year_level
+        self.program = program
 
 class Registrar:
     pass
