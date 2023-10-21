@@ -15,8 +15,23 @@ class Student:
 class Registrar:
     pass
 
-class Cashier:
-    pass
+class Cashier(Studet):
+    def __init__(self):
+        self.balance= False
+        self.pay= False
+
+    def Check_Balance(self):
+        if self.balance ==True:
+            print(f'Have balance.')
+        else:
+            print(f'No Balance')
+        
+    def Pay_Balance(self):
+        if self.pay==True:
+            print(f'Balance already paid.')
+        else:
+            print(f'Please pay your balance.')
+            
 
 
 class Clearance(Student):
