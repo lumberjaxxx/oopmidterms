@@ -20,7 +20,7 @@ class Cashier:
 
 
 class Clearance(Student):
-    def __init__(self):
+    def __init__(self,name,year_level,program):
         self.orgfee = False
         self.csgfee = False
         
@@ -34,9 +34,14 @@ class Clearance(Student):
         else:
             print(f'Is not cleared.')
 
-    def PayOrg(self):
-        if {self.OrgFee}== True:
-            return f'{self.name} paid the Org Fee.'
+    def Pay_Org(self):
+        if self.orgfee==True:
+            print(f'Already cleared in Org Fee.')
+            print( f'{Student.name} paid the Org Fee.')
+        elif self.csgfee==True:
+            print(f'Already cleared in CSG Fee.')
+        else:
+            print(f'Is not cleared.')
 
     def CSGFee(self):
         if {self.CsgFee} == True:
@@ -71,4 +76,8 @@ class Verification(Student, Cashier):
 
 
 
-student1 = Clearance("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+student1 = Student("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+student1.display_student_info()
+stud1_registrar = Registrar()
+stud1_clearance = Clearance()
+stud1_clearance.Pay_Org(True)
