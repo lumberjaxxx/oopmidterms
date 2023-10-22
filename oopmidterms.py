@@ -22,86 +22,94 @@ class Registrar(Student):
 
     def Submit_Requirements(self):
         if self.admission_result == True:
-            print("Admission result has been received")
+            print("Admission result has been received ")
         else:
             print("admission result was not recieved") 
 
 
     def Registrar_Signed(self):
         if self.admission_result == True:
-            print("your admission slip has been signed")
+            print("your admission slip has been signed \n ")
         else:
-            print("your admission result wass not been signed")
+            print("your admission result was not been signed \n ")
 
 class Cashier(Student):
-    def __init__(self):
+    def __init__(self,name, student_number, year_level, program):
         self.balance= False
-        self.pay= False
+        self.pay= True
+
+        Student.__init__(self,name, student_number, year_level, program)
 
     def Check_Balance(self):
         if self.balance ==True:
-            print(f'Have balance.')
+            print(f'{self.name} has balance.')
+            self.pay = False
         else:
-            print(f'No Balance')
+            print(f'{self.name} has no remaining balance')
+            return self.pay
         
     def Pay_Balance(self):
         if self.pay==True:
-            print(f'Balance already paid.')
+            print(f'Balance has been cleared. \n')
         else:
-            print(f'Please pay your balance.')
-            
+            print('Transaction declined')
+            print(f'Please pay your balance. \n')
 
+            
 
 class Clearance(Student):
     def __init__(self,name, student_number, year_level, program):
         self.orgfee = False
         self.csgfee = False
+        self._status = False
         
         Student.__init__(self,name, student_number, year_level, program)
 
-    def Pay_Org(self):
-        if self.orgfee==True:
-            print(f'Already cleared in Org Fee.')
-        elif self.csgfee==True:
-            print(f'Already cleared in CSG Fee.')
-        else:
-            print(f'Is not cleared.')
+    def get_status(self):
+        pass
 
     def Pay_Org(self):
         if self.orgfee==True:
             print(f'Already cleared in Org Fee.')
             print( f'{self.name} paid the Org Fee.')
-        elif self.csgfee==True:
-            print(f'Already cleared in CSG Fee.')
         else:
             print(f'Is not cleared.')
+            print('Please proceed to clearing your Org fee.')
 
     def CSGFee(self):
-        if {self.CsgFee} == True:
-            return f'{self.CsgFee} paid the CSG Fee.'
+        if self.csgfee == True:
+            print(f'{self.name} paid the CSG Fee.')
+        else:
+            print(f'Is not cleared.')
+            print('Please proceed to clearing your CSG fee.')
 
     def signing(self):
-        if {self.status}==False:
-            return f'The clearance of {self.name} with a student number of {self._student_number}///' \
-                   f' and a {self.year_level} from the program of {self.program} is already signed. '
+        if self._status==True:
+            print(f'The clearance of {self.name} with a student number of {self._student_number} \nand a {self.year_level} from the program of {self.program} is already signed. \n ')
+        else:
+            print('Transaction not completed. Try Again.')
 
 
-class Verify (Cashier):
-    def __init__(self, name, year_level, program, status):
-        self.verify = True
+class Verify (Clearance):
+    def __init__(self, name, student_number, year_level, program):
+        Clearance.__init__(self, name, student_number, year_level, program)
+        
 
-        Cashier.__init__(self, name, year_level, program, status)
-
+    def get_status(self):
+        self._status = True
+        print(f'{self._status}')
+    
+    
+    
     def verify(self):
-        if self.status() == True:
+        if self._status == True:
             print(f'{self.name} is cleared ')
         else: 
             print('Please clear your previous requirements')
 
     def details(self):
-        if Cashier.status() == True:
-            print(f'{self.name}of {self.year_level} - {self.program} \
-                  has complete all the requirement for enrollment.')
+        if self._status == True:
+            print(f'{self.name}of {self.year_level} - {self.program} has complete all the requirement for enrollment.')
             print(f'{self.name} is officially enrolled')
 
 
@@ -118,8 +126,23 @@ registrar.Submit_Requirements()
 registrar.Registrar_Signed()
 
 #Cashier
+cashier = Cashier('Rex', 202280011, "2nd year", "BS Computer Science")
+cashier.balance = False
+cashier.Check_Balance()
+cashier.Pay_Balance()
 
-# stud1_clearance = Clearance('Rex', 202280011, "2nd year", "BS Computer Science")
-# stud1_org = stud1_clearance.verify
-# stud1_clearance.Pay_Org()
+#Clearance
 
+clearance = Clearance('Rex', 202280011, "2nd year", "BS Computer Science")
+clearance.orgfee = True
+clearance.csgfee = True
+stat = clearance._status = clearance.orgfee and clearance.csgfee
+clearance.Pay_Org()
+clearance.CSGFee()
+clearance.signing()
+
+#Verification
+verify = Verify('Rex', 202280011, "2nd year", "BS Computer Science")
+verify.get_status()
+verify.verify()
+verify.details()
