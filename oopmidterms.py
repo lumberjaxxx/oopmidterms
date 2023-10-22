@@ -3,25 +3,29 @@ class Student:
     def __init__(self, name, student_number, year_level, program):
 
         self.name = name
+        self._student_number = student_number
         self.year_level = year_level
         self.program = program
 
     def display_student_info(self):
         print(f"Name: {self.name}")
-        print(f"year_level: {self.year_level}")
-        print(f"program: {self.program}")
+        print(f"Year Level: {self.year_level}")
+        print(f"Program: {self.program} \n ") 
 
 
 class Registrar(Student):
-    def __init__(self, student_number):
-        self.student_number = student_number
+
+    def __init__(self, name, student_number, year_level, program):
         self.admission_result = False
+
+        Student.__init__(self, name, student_number, year_level, program)
 
     def Submit_Requirements(self):
         if self.admission_result == True:
             print("Admission result has been received")
         else:
             print("admission result was not recieved") 
+
 
     def Registrar_Signed(self):
         if self.admission_result == True:
@@ -49,11 +53,11 @@ class Cashier(Student):
 
 
 class Clearance(Student):
-    def __init__(self,name,year_level,program):
+    def __init__(self,name, student_number, year_level, program):
         self.orgfee = False
         self.csgfee = False
         
-        Student.__init__(self,name,year_level,program)
+        Student.__init__(self,name, student_number, year_level, program)
 
     def Pay_Org(self):
         if self.orgfee==True:
@@ -66,7 +70,7 @@ class Clearance(Student):
     def Pay_Org(self):
         if self.orgfee==True:
             print(f'Already cleared in Org Fee.')
-            print( f'{Student.name} paid the Org Fee.')
+            print( f'{self.name} paid the Org Fee.')
         elif self.csgfee==True:
             print(f'Already cleared in CSG Fee.')
         else:
@@ -82,30 +86,40 @@ class Clearance(Student):
                    f' and a {self.year_level} from the program of {self.program} is already signed. '
 
 
-class Verification(Student, Cashier):
-
+class Verify (Cashier):
     def __init__(self, name, year_level, program, status):
         self.verify = True
 
-        Student.__init__(self, name, program, year_level)
-        Cashier.__init__(self, status)
+        Cashier.__init__(self, name, year_level, program, status)
 
     def verify(self):
-        if Cashier.status() == True:
-            print(f'{Student.name} is cleared ')
+        if self.status() == True:
+            print(f'{self.name} is cleared ')
         else: 
             print('Please clear your previous requirements')
 
     def details(self):
         if Cashier.status() == True:
-            print(f'{Student.name}of {Student.year_level} - {Student.program} \
+            print(f'{self.name}of {self.year_level} - {self.program} \
                   has complete all the requirement for enrollment.')
-            print(f'{Student.name} is officially enrolled')
+            print(f'{self.name} is officially enrolled')
 
 
-
-student1 = Student("Spledelyn Cristine Recarze",202280045,"2nd Year","BS Computer Science")
+#Student
+student1 = Student('Rex', 202280011, "2nd year", "BS Computer Science")
 student1.display_student_info()
-stud1_registrar = Registrar()
-stud1_clearance = Clearance()
-stud1_clearance.Pay_Org(True)
+
+
+
+#Registrar
+registrar = Registrar('Rex', 202280011, "2nd year", "BS Computer Science")
+registrar.admission_result = True
+registrar.Submit_Requirements()
+registrar.Registrar_Signed()
+
+#Cashier
+
+# stud1_clearance = Clearance('Rex', 202280011, "2nd year", "BS Computer Science")
+# stud1_org = stud1_clearance.verify
+# stud1_clearance.Pay_Org()
+
