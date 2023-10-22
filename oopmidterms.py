@@ -96,10 +96,7 @@ class Verify (Clearance):
         
 
     def get_status(self):
-        self._status = True
-        print(f'{self._status}')
-    
-    
+        self._status = True   
     
     def verify(self):
         if self._status == True:
@@ -109,8 +106,26 @@ class Verify (Clearance):
 
     def details(self):
         if self._status == True:
-            print(f'{self.name}of {self.year_level} - {self.program} has complete all the requirement for enrollment.')
+            print(f'{self.name} of {self.year_level} - {self.program} has complete all the requirement for enrollment.')
             print(f'{self.name} is officially enrolled')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Student
