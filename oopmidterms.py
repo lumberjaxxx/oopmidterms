@@ -14,6 +14,7 @@ class Student:
 
 
 class Registrar(Student):
+
     def __init__(self, name, student_number, year_level, program):
         self.admission_result = False
 
@@ -24,6 +25,7 @@ class Registrar(Student):
             print("Admission result has been received ")
         else:
             print("admission result was not recieved") 
+
 
     def Registrar_Signed(self):
         if self.admission_result == True:
@@ -114,6 +116,7 @@ class Verify (Clearance):
 #Student
 student1 = Student('Rex', 202280011, "2nd year", "BS Computer Science")
 student1.display_student_info()
+
 
 
 #Registrar
