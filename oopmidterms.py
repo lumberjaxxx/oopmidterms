@@ -12,10 +12,24 @@ class Student:
         print(f"program: {self.program}")
 
 
-class Registrar:
-    pass
+class Registrar(Student):
+    def __init__(self, student_number):
+        self.student_number = student_number
+        self.admission_result = False
 
-class Cashier(Studet):
+    def Submit_Requirements(self):
+        if self.admission_result == True:
+            print("Admission result has been received")
+        else:
+            print("admission result was not recieved") 
+
+    def Registrar_Signed(self):
+        if self.admission_result == True:
+            print("your admission slip has been signed")
+        else:
+            print("your admission result wass not been signed")
+
+class Cashier(Student):
     def __init__(self):
         self.balance= False
         self.pay= False
@@ -87,7 +101,6 @@ class Verification(Student, Cashier):
             print(f'{Student.name}of {Student.year_level} - {Student.program} \
                   has complete all the requirement for enrollment.')
             print(f'{Student.name} is officially enrolled')
-
 
 
 
